@@ -6,16 +6,14 @@ import { chageFavorite } from "../../redux/actions/holidays";
 import { AntDesign } from '@expo/vector-icons';
 
 const Holiday = (props) => {
-    const [isFavorite, setFavorite] = React.useState(props.isFavorite)
     const fnDispatch = useDispatch()
     const fnHandleFavorite = () => {
-        setFavorite((prev) => !prev)
         fnDispatch(chageFavorite(props.id))
     }
     return (
         <View style={styles.card}>
              <Text style={styles.monthText} >{props.month}</Text>
-            <AntDesign name={isFavorite ? 'star' : 'staro'} size={20} color="yellow" style={styles.icon} onPress={fnHandleFavorite}/>
+            <AntDesign name={props.isFavorite ? 'star' : 'staro'} size={20} color="yellow" style={styles.icon} onPress={fnHandleFavorite}/>
             <Text style={styles.nameText} >{props.name}</Text>
             <View style={styles.numberContainer}>
                 <Text style={styles.numberText} >{props.date}</Text>
@@ -31,7 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#92dccd',
         display: 'flex',
         flexDirection: 'column',
-        marginBottom: 5,
+        marginBottom: 3,
         marginLeft: 3,
         alignItems: 'center',
         justifyContent: 'center',

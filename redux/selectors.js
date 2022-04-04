@@ -36,15 +36,33 @@ export const getFavoritesInfo = (store) => {
       aFavoritesByCountry[index].holidays.push(element);
     }
   });
+  aFavoritesByCountry = sortElements(aFavoritesByCountry)
+  return aFavoritesByCountry.length > 0 ? aFavoritesByCountry : [];
+};
 
-  aFavoritesByCountry = aFavoritesByCountry.map((favorite) => {
+const sortElements = (elements) => {
+  //Sort Countries
+  let aElementsCopy = elements.sort((a, b) => {
+    if (a.country > b.country) return 1;
+    if (a.country < b.country) return -1;
+    return 0;
+  });
+  //Sort Holidays
+  aElementsCopy = aElementsCopy.map((element) => {
     let sCountryText = countries.find(
-      (country) => country.value === favorite.country
+      (country) => country.value === element
+      .country
     ).label;
+    element.holidays = element.holidays.sort((a, b) => {
+      if (a.date > b.date) return 1;
+      if (a.date < b.date) return -1;
+      return 0;
+    });
     return {
-      ...favorite,
-      country: sCountryText !== null ? sCountryText : favorite.country,
+      ...element,
+      country: sCountryText !== null ? sCountryText : element.country,
     };
   });
-  return aFavoritesByCountry.length > 0 ? aFavoritesByCountry : [];
+
+  return aElementsCopy;
 };

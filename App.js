@@ -1,5 +1,5 @@
 import AppLoading from 'expo-app-loading'
-import Navigator from './routes/drawer'
+import Navigator from './navigation/drawer'
 import { useFonts, Nunito_400Regular,Nunito_700Bold } from '@expo-google-fonts/nunito';
 import { Provider } from 'react-redux';
 import store from './redux/store';

@@ -1,10 +1,3 @@
-export const HEADER_STYLE = {
-  defaultNavigationOptions: {
-    headerTintColor: '#92dccd',
-    headerStyle: { backgroundColor: '#92dccd', height: 80 },
-  }
-}
-
 export const countries = [
   { label: 'United States', value: 'US' },
   { label: 'Portugal', value: 'PT' },

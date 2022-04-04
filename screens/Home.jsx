@@ -14,11 +14,12 @@ import { getHolidaysFromAPI } from "../redux/actions/holidays";
 const Home = () => {
   let oInfoRequest = useSelector(getInfoToDisplay);
   let aHolidaysToDisplay = useSelector(getHolidaysToDisplay);
+  let iNumberOfFavorites = useSelector(getNumberOfFavorites);
   const fnDispatch = useDispatch();
   React.useEffect(() => {
     fnDispatch(getHolidaysFromAPI(oInfoRequest.country, oInfoRequest.month));
-  }, [oInfoRequest.country, oInfoRequest.month, fnDispatch]);
-  let iNumberOfFavorites = useSelector(getNumberOfFavorites);
+  }, [oInfoRequest.country, oInfoRequest.month,fnDispatch]);
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>

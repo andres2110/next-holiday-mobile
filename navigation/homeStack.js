@@ -2,7 +2,7 @@ import React from 'react'
 import Header from "../components/commons/Header";
 import Home from '../screens/Home'
 import { createStackNavigator } from "react-navigation-stack";
-import { HEADER_STYLE } from "../resources/constants";
+import { HEADER_STYLE } from "../resources/global_style";
 
 const fnHeaderNavigation = ({navigation}) => {
     return {

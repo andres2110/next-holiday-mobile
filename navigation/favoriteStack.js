@@ -1,6 +1,6 @@
 import { createStackNavigator } from "react-navigation-stack";
 import Header from "../components/commons/Header";
-import { HEADER_STYLE } from "../resources/constants";
+import { HEADER_STYLE } from "../resources/global_style";
 import Favorites from "../screens/Favorites";
 
 const fnHeaderNavigation = ({navigation}) => {
