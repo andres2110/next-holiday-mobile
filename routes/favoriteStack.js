@@ -1,17 +1,20 @@
 import { createStackNavigator } from "react-navigation-stack";
-import Header from "../components/Header";
-import Favorite from "../screens/Favorite";
+import Header from "../components/commons/Header";
+import { HEADER_STYLE } from "../resources/constants";
+import Favorites from "../screens/Favorites";
 
 const fnHeaderNavigation = ({navigation}) => {
     return {
         headerTitle: () => <Header navigation = {navigation}/>
     }
 } 
-screens = {
-    Home: {
-        screen: Favorite,
+const screens = {
+    Favorites: {
+        screen: Favorites,
         navigationOptions: fnHeaderNavigation
     }
 }
 
-const HomeStack = createStackNavigator(screens)
+const FavoriteStack = createStackNavigator(screens, HEADER_STYLE)
+
+  export default FavoriteStack;
