@@ -11,7 +11,7 @@ import {
 } from "../redux/selectors";
 import { getHolidaysFromAPI } from "../redux/actions/holidays";
 
-const Home = () => {
+const Home = ({navigation}) => {
   let oInfoRequest = useSelector(getInfoToDisplay);
   let aHolidaysToDisplay = useSelector(getHolidaysToDisplay);
   let iNumberOfFavorites = useSelector(getNumberOfFavorites);
@@ -31,7 +31,7 @@ const Home = () => {
           {`Favorites: ${iNumberOfFavorites}`}
         </Text>
       </View>
-      <ListOfHolidays holidays={aHolidaysToDisplay} />
+      <ListOfHolidays holidays={aHolidaysToDisplay} navigate={navigation.navigate}/>
     </View>
   );
 };

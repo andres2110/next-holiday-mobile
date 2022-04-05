@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, FlatList } from "react-native";
 import ListOfHolidays from "../commons/ListOfHolidays";
 import {global_styles} from '../../resources/global_style'
 
-const ListOfFavorites = () => {
+const ListOfFavorites = ({navigate}) => {
   let aHolidaysToDisplay = useSelector(getFavoritesInfo);
   return aHolidaysToDisplay.length === 0 ? (
     <View style={global_styles.error}>
@@ -19,7 +19,7 @@ const ListOfFavorites = () => {
         return (
           <View key={item.country}>
             <Text style={styles.countryText}>{item.country}</Text>
-            <ListOfHolidays holidays={item.holidays} printMonth={true} />
+            <ListOfHolidays holidays={item.holidays} printMonth={true} navigate={navigate}/>
           </View>
         );
       }}

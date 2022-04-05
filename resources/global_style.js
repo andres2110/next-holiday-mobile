@@ -2,8 +2,9 @@ import { StyleSheet } from "react-native";
 
 export const HEADER_STYLE = {
   defaultNavigationOptions: {
-    headerTintColor: "#92dccd",
+    headerTintColor: "white",
     headerStyle: { backgroundColor: "#92dccd", height: 80 },
+    headerTitleStyle: { fontFamily: "Nunito_400Regular" },
   },
 };
 

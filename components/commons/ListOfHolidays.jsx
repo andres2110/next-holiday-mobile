@@ -15,6 +15,8 @@ const ListOfHolidays = (props) => {
         let sMonth = props.printMonth ? getMonthText(oDate.getMonth()) : "";
         return (
           <Holiday
+            navigate = {props.navigate}
+            item ={item}
             name={item.name}
             date={oDate.getDate()}
             key={item.id}

@@ -25,12 +25,21 @@ const endHolidaysRequest = (recivedResponse) => ({
 
 const transformData = (data) => {
   return data.holidays.map((holiday) => {
+    let oStartDate = new Date(Date.parse(holiday.start))
+    let oEndDate = new Date(Date.parse(holiday.end))
+    let iDurationDays = Math.round(
+      (oEndDate - oStartDate) /
+        (1000 * 60 * 60 * 24)
+    );
     return {
       id: holiday.id,
       name: holiday.name,
       date: holiday.date,
       isFavorite: false,
       country: holiday.country,
+      end: holiday.end,
+      duration:iDurationDays,
+      type:holiday.type
     };
   });
 };
