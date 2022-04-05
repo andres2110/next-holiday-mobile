@@ -6,3 +6,22 @@ export const getMonthText=  (monthNumber) => {
     let month = formatter.format(today)
     return month;
 }
+
+export const getDaysBetween =(a,b) => {
+    let oStartDate = new Date(Date.parse(a))
+    let oEndDate = new Date(Date.parse(b))
+    let iDurationDays = Math.round(
+      (oEndDate - oStartDate) /
+        (1000 * 60 * 60 * 24)
+    );
+    return iDurationDays;
+}
+
+export const getDateText = (dateString) =>{
+    let oDate = new Date(dateString);
+    let sMonth = getMonthText(oDate.getMonth());
+    return {
+        dayString: oDate.getDate(),
+        monthText: sMonth
+    }
+}

@@ -1,8 +1,8 @@
 import React from "react";
 import { FlatList, View, Text } from "react-native";
 import Holiday from "./Holiday";
-import { getMonthText } from "../../resources/helpers";
-import { global_styles } from "../../resources/global_style";
+import { getDateText } from "../../resources/helpers";
+import { globalStyles } from "../../resources/globalStyle";
 
 const ListOfHolidays = (props) => {
   return props.holidays.length > 0 ? (
@@ -11,14 +11,14 @@ const ListOfHolidays = (props) => {
       keyExtractor={(item) => item.id}
       numColumns={4}
       renderItem={({ item }) => {
-        let oDate = new Date(item.date);
-        let sMonth = props.printMonth ? getMonthText(oDate.getMonth()) : "";
+        let oDate = getDateText(item.date);
+        let sMonth = props.printMonth ? oDate.monthText : "";
         return (
           <Holiday
             navigate = {props.navigate}
             item ={item}
             name={item.name}
-            date={oDate.getDate()}
+            date={oDate.dayString}
             key={item.id}
             month={sMonth}
             id={item.id}
@@ -28,8 +28,8 @@ const ListOfHolidays = (props) => {
       }}
     />
   ) : (
-    <View style={global_styles.error}>
-      <Text style={global_styles.errorMessage}>No holidays are available for the current month or country.</Text>
+    <View style={globalStyles.error}>
+      <Text style={globalStyles.errorMessage}>No holidays are available for the current month or country.</Text>
     </View>
   );
 };

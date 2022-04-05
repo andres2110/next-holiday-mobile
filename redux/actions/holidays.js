@@ -4,6 +4,7 @@ import {
   CHANGE_COUNTRY_OF_HOLIDAYS,
   CHANGE_FAVORITE_HOLIDAY,
   CHANGE_MONTH_OF_HOLIDAY,
+  CHANGE_NOTES_OF_HOLIDAY,
 } from "../actionTypes";
 import {
   API_KEY,
@@ -12,6 +13,7 @@ import {
   DEFAULT_MONTH,
 } from "../../resources/constants";
 import axios from "axios";
+import { getDaysBetween } from "../../resources/helpers";
 
 const startHolidaysRequest = () => ({
   type: START_HOLIDAYS_REQUEST_FROM_API,
@@ -25,12 +27,7 @@ const endHolidaysRequest = (recivedResponse) => ({
 
 const transformData = (data) => {
   return data.holidays.map((holiday) => {
-    let oStartDate = new Date(Date.parse(holiday.start))
-    let oEndDate = new Date(Date.parse(holiday.end))
-    let iDurationDays = Math.round(
-      (oEndDate - oStartDate) /
-        (1000 * 60 * 60 * 24)
-    );
+    let iDurationDays = getDaysBetween(holiday.start,holiday.end)
     return {
       id: holiday.id,
       name: holiday.name,
@@ -39,7 +36,8 @@ const transformData = (data) => {
       country: holiday.country,
       end: holiday.end,
       duration:iDurationDays,
-      type:holiday.type
+      type:holiday.type,
+      notes:""
     };
   });
 };
@@ -84,3 +82,9 @@ export const changeMonthOfHolidays = (month) => ({
   type: CHANGE_MONTH_OF_HOLIDAY,
   month: month ? month : 0,
 });
+
+export const changeNotesOfHolidays = (id,notes) => ({
+  type: CHANGE_NOTES_OF_HOLIDAY,
+  notes: notes ? notes:"",
+  id: id? id:""
+})

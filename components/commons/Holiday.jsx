@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 import { chageFavorite } from "../../redux/actions/holidays";
 import { AntDesign } from "@expo/vector-icons";
+import { globalStyles } from "../../resources/globalStyle";
 
 const Holiday = (props) => {
   const fnDispatch = useDispatch();
@@ -16,15 +17,15 @@ const Holiday = (props) => {
       <AntDesign
         name={props.isFavorite ? "star" : "staro"}
         size={20}
-        color="yellow"
-        style={styles.icon}
+        color="#F8E117"
+        style={globalStyles.iconStar}
         onPress={fnHandleFavorite}
       />
       <TouchableOpacity onPress={()=>fnNavigate('HolidayDetails',props.item)}>
         <Text style={styles.nameText}>{props.name}</Text>
       </TouchableOpacity>
       <View style={styles.numberContainer}>
-        <Text style={styles.numberText}>{props.date}</Text>
+        <Text style={globalStyles.infoTextBlack}>{props.date}</Text>
       </View>
     </View>
   );
@@ -32,11 +33,10 @@ const Holiday = (props) => {
 
 const styles = StyleSheet.create({
   card: {
-    height: 100,
+    height: 105,
     width: 90,
     backgroundColor: "#92dccd",
     display: "flex",
-    flexDirection: "column",
     marginBottom: 3,
     marginLeft: 3,
     alignItems: "center",
@@ -44,11 +44,8 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontFamily: "Nunito_400Regular",
-    fontSize: 13,
-  },
-  numberText: {
-    fontFamily: "Nunito_400Regular",
-    fontSize: 16,
+    fontSize: 12,
+    marginBottom: 5
   },
   monthText: {
     fontFamily: "Nunito_700Bold",
@@ -62,15 +59,9 @@ const styles = StyleSheet.create({
     bottom: 3,
     width: 20,
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 12,
-  },
-  icon: {
-    position: "absolute",
-    top: 1,
-    right: 3,
   },
 });
 

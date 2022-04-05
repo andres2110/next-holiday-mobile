@@ -9,8 +9,8 @@ export const getHolidaysToDisplay = (store) =>
 
 export const getInfoToDisplay = (store) =>
   store && store.country && store.currentMonth !== undefined
-    ? { country: store.country, month: store.currentMonth }
-    : { country: DEFAULT_COUNTRY, month: DEFAULT_MONTH };
+    ? { country: store.country, month: store.currentMonth, isLoading: store.isLoading }
+    : { country: DEFAULT_COUNTRY, month: DEFAULT_MONTH ,isLoading: false};
 
 /********** FAVORITES INFO **********************************/
 export const getNumberOfFavorites = (store) =>
@@ -36,10 +36,11 @@ export const getFavoritesInfo = (store) => {
       aFavoritesByCountry[index].holidays.push(element);
     }
   });
-  aFavoritesByCountry = sortElements(aFavoritesByCountry)
+  aFavoritesByCountry = sortElements(aFavoritesByCountry);
   return aFavoritesByCountry.length > 0 ? aFavoritesByCountry : [];
 };
 
+/********** HELPERS **********************************/
 const sortElements = (elements) => {
   //Sort Countries
   let aElementsCopy = elements.sort((a, b) => {
@@ -50,8 +51,7 @@ const sortElements = (elements) => {
   //Sort Holidays
   aElementsCopy = aElementsCopy.map((element) => {
     let sCountryText = countries.find(
-      (country) => country.value === element
-      .country
+      (country) => country.value === element.country
     ).label;
     element.holidays = element.holidays.sort((a, b) => {
       if (a.date > b.date) return 1;

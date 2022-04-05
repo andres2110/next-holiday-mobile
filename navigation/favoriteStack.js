@@ -1,6 +1,6 @@
 import { createStackNavigator } from "react-navigation-stack";
 import Header from "../components/commons/Header";
-import { HEADER_STYLE } from "../resources/global_style";
+import { HEADER_STYLE } from "../resources/globalStyle";
 import Favorites from "../screens/Favorites";
 import HolidayDetails from '../screens/HolidayDetails';
 

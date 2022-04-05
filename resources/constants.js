@@ -4,8 +4,8 @@ export const countries = [
   { label: 'Spain', value: 'ES' },
   { label: 'Poland', value: 'PL' },
   { label: 'Ecuador', value: 'EC' },
-  { label: 'China', value: 'CHN' },
-  { label: 'India', value: 'IND' },
+  { label: 'China', value: 'CN' },
+  { label: 'India', value: 'IN' },
 ];
 
 export const API_KEY = "ee12eeea09fc3b3ce72f39ab8f67961f";
