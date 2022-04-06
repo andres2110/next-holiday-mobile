@@ -39,16 +39,10 @@ The goal of the application is to rank your favorite vacations according to the 
 ### Navigation
 The first inconvenient I encountered was to find the way to use the navigation, since we went from React oriented to a web navigation to a phone navigation, since the dependency we use is no longer react-router but react-navigation, so I decided to give three screens taking advantage of the Navigator allowing a quick use of the stack to return to the previously visited pages, these pages are (Home, Favorites, HolidayDetails).  
 
-### Favorites Information
+### DropDownPicker
 
-Since I bring the information from the API as the countries and months change, I chose to save the information in another array of favorites and not use the same array of holidaysAll of the global state of the application, because if I saved all the holidays that I asked to the API this was going to grow a lot, since there are countries like US that has as 24 holidays for each month, also this made it easier for me to manipulate the holiday data. 
-
-The difficulty that I found was to synchronize the data, since in the main page, I had to have the favorite status in the holidaysAll. But well I found a way to do it, and whenever I make a new request to the API, I check that the holiday does not exist in the array of favoritesInfo, and if it exists I change the status of isFavorite so that it is updated. 
+I had problems with the incorporation of the DropDown to the home page, because this component when opened was not placed above the other components, but it was placed behind and I could not solve this error, but when consulting the mode of use I found the presentation mode of "MODAL" that allowed me to open a new page presenting the other options, I thought it was a good idea to use this way because the list of countries may increase in the future, but it was not possible to solve this error, but when I consulted the mode of use I found the presentation mode of "MODAL" that allowed me to open a new page presenting the other options, it seemed a good idea to use this way because the list of countries may increase in the future.
 
 
-### Favorites Display
-This part was very difficult to decide, because I did not know the way I wanted to present the data and the best object to do it.
-The hard part was that I not only wanted to present the favorites, but I wanted to separate them by their country. 
-So I opted to create a new array of objects that would have the necessary information to do this ( {country: 'EC', holidays: [] } ).
-
-I tried to use groupBy but I couldn't make it work, so I sorted it by the default countries.
+### Redux
+Like the web components, I decided to use Redux for the storage usage, so I separated some components like the Star or Notes, to have the logic of saving the information, so the child components will be the ones who send the information through the actions and reducers, and receive this information by props, I thought it was a good idea since I only have to pass the information through props to keep them updated. I found a difficulty when using the Star, but I could solve it with the use of useEffect since the information of the component was not kept updated by the props, then when it changes it updates its state by the setFavorite.
