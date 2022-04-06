@@ -13,8 +13,8 @@ const Notes = (props) => {
     setEditable(false);
   };
   return (
-    <View>
-      <Text style={globalStyles.infoTextBlack}>Notes: </Text>
+    <View style={styles.container}>
+      <Text style={globalStyles.infoTextBlack}>My notes: </Text>
       <TextInput
         multiline
         style={styles.input}
@@ -36,9 +36,12 @@ const Notes = (props) => {
 };
 
 const styles = StyleSheet.create({
+  container:{
+    marginTop: "15%"
+  },
   input: {
     borderColor: "#92dccd",
-    // backgroundColor:"#b5ebe0",
+    backgroundColor:"#b5ebe0",
     borderWidth: 1,
     width: 300,
     height: 150,

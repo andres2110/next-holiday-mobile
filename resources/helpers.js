@@ -1,3 +1,4 @@
+import { countries } from "./constants"
 export const getMonthText=  (monthNumber) => {
     if (monthNumber === 1) return 'February' //TODO resolve bug about the February Month
     let formatter = new Intl.DateTimeFormat('en-us', { month: 'long' })
@@ -24,4 +25,9 @@ export const getDateText = (dateString) =>{
         dayString: oDate.getDate(),
         monthText: sMonth
     }
+}
+
+export const getCountryText = (value) =>{
+    let sCountryText = countries.find((country)=> country.value === value)
+    return sCountryText !== null ? sCountryText.label: 'N/A'
 }

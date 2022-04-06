@@ -7,21 +7,15 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { chageFavorite } from "../redux/actions/holidays";
-import { useDispatch } from "react-redux";
 import { globalStyles } from "../resources/globalStyle";
 import Card from "../components/details/Card";
 import Notes from "../components/details/Notes";
+import { getDateText } from "../resources/helpers";
+import Star from "../components/commons/Star";
 
 const HolidayDetails = ({ navigation }) => {
   let oHoliday = navigation.state.params;
-  const [isFavorite, setFavorite] = React.useState(oHoliday.isFavorite);
-  const fnDispatch = useDispatch();
-  const fnHandleFavorite = () => {
-    fnDispatch(chageFavorite(oHoliday.id));
-    setFavorite((prevState) => !prevState);
-  };
+  let oDate = getDateText(oHoliday.date);
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -34,21 +28,17 @@ const HolidayDetails = ({ navigation }) => {
         keyboardVerticalOffset={3}
       >
         <View style={styles.content}>
-          <AntDesign
-            name={isFavorite ? "star" : "staro"}
-            size={30}
-            color="#F8E117"
-            style={globalStyles.iconStar}
-            onPress={fnHandleFavorite}
-          />
+          <Star id={oHoliday.id} isFavorite={oHoliday.isFavorite} size={33} isDetails={true}/>
           <Text style={globalStyles.headerTextBlack}>{oHoliday.name}</Text>
-          <Text style={globalStyles.subHeaderTextBlack}>Abril ,16</Text>
+          <Text style={globalStyles.subHeaderTextBlack}>
+            {`${oDate.monthText}, ${oDate.dayString}`}
+          </Text>
           <Card
             duration={oHoliday.duration}
             type={oHoliday.type}
-            date={oHoliday.date}
+            country={oHoliday.country}
           />
-          <Notes id={oHoliday.id} notes={oHoliday.notes}/>
+          <Notes id={oHoliday.id} notes={oHoliday.notes} />
         </View>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>

@@ -1,27 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useDispatch } from "react-redux";
-import { chageFavorite } from "../../redux/actions/holidays";
-import { AntDesign } from "@expo/vector-icons";
 import { globalStyles } from "../../resources/globalStyle";
+import Star from "./Star";
 
 const Holiday = (props) => {
-  const fnDispatch = useDispatch();
-  const fnHandleFavorite = () => {
-    fnDispatch(chageFavorite(props.id));
-  };
   const fnNavigate = props.navigate;
   return (
     <View style={styles.card}>
       <Text style={styles.monthText}>{props.month}</Text>
-      <AntDesign
-        name={props.isFavorite ? "star" : "staro"}
-        size={20}
-        color="#F8E117"
-        style={globalStyles.iconStar}
-        onPress={fnHandleFavorite}
-      />
-      <TouchableOpacity onPress={()=>fnNavigate('HolidayDetails',props.item)}>
+      <Star id={props.id} isFavorite={props.isFavorite} size={20} isDetails={false}/>
+      <TouchableOpacity
+        onPress={() => fnNavigate("HolidayDetails", props.item)}
+      >
         <Text style={styles.nameText}>{props.name}</Text>
       </TouchableOpacity>
       <View style={styles.numberContainer}>
@@ -45,7 +35,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontFamily: "Nunito_400Regular",
     fontSize: 12,
-    marginBottom: 5
+    marginBottom: 5,
   },
   monthText: {
     fontFamily: "Nunito_700Bold",

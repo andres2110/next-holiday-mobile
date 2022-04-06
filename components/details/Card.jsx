@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { globalStyles } from "../../resources/globalStyle";
-import { getDateText } from "../../resources/helpers";
+import { getCountryText } from "../../resources/helpers";
 const Card = (props) => {
-  let oDate = getDateText(props.date);
+  let sCountry = getCountryText(props.country)
   return (
     <View style={styles.infoContainer}>
       <View style={styles.labelContainer}>
-        <Text style={globalStyles.infoTextBlack}>Days:</Text>
+        <Text style={globalStyles.infoTextBlack}>Duration (Days):</Text>
         <View style={styles.content}>
           <Text style={globalStyles.infoTextBlack}>{props.duration}</Text>
         </View>
@@ -18,8 +18,7 @@ const Card = (props) => {
           <Text style={globalStyles.infoTextBlack}>{props.type}</Text>
         </View>
       </View>
-      <Text style={styles.dateText}> United States
-        {/* {`${oDate.monthText}, ${oDate.dayString}`} */}
+      <Text style={styles.dateText}> {sCountry}
       </Text>
     </View>
   );
