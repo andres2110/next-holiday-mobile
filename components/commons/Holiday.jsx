@@ -8,7 +8,12 @@ const Holiday = (props) => {
   return (
     <View style={styles.card}>
       <Text style={styles.monthText}>{props.month}</Text>
-      <Star id={props.id} isFavorite={props.isFavorite} size={20} isDetails={false}/>
+      <Star
+        id={props.id}
+        isFavorite={props.isFavorite}
+        size={20}
+        isDetails={false}
+      />
       <TouchableOpacity
         onPress={() => fnNavigate("HolidayDetails", props.item)}
       >
